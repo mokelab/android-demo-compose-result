@@ -45,6 +45,8 @@ fun MainApp() {
         }
         navigation(startDestination = "/scoped/main", route = "/scoped") {
             composable("/scoped/main") { backStackEntry ->
+                // navigation scoped view model
+                // https://developer.android.com/topic/libraries/architecture/viewmodel/viewmodel-apis#vm-api-navgraph
                 val parentEntry = remember(backStackEntry) {
                     navController.getBackStackEntry("/scoped")
                 }
@@ -59,6 +61,8 @@ fun MainApp() {
                     })
             }
             composable("/scoped/form") { backStackEntry ->
+                // navigation scoped view model
+                // https://developer.android.com/topic/libraries/architecture/viewmodel/viewmodel-apis#vm-api-navgraph
                 val parentEntry = remember(backStackEntry) {
                     navController.getBackStackEntry("/scoped")
                 }
