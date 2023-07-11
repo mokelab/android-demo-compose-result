@@ -1,4 +1,4 @@
-package com.mokelab.demo.compose.result.screen.scoped
+package com.mokelab.demo.compose.result.screen
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf

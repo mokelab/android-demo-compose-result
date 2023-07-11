@@ -17,6 +17,7 @@ fun HomeScreen(
     result: String?,
     toForm: () -> Unit,
     toScopedMain: () -> Unit,
+    toPrevMain: () -> Unit,
 ) {
     Scaffold(
         topBar = {
@@ -32,10 +33,12 @@ fun HomeScreen(
                 Text("Go to form")
             }
 
-            Button(onClick = {
-                toScopedMain()
-            }) {
+            Button(onClick = toScopedMain) {
                 Text("Go to scoped main screen")
+            }
+
+            Button(onClick = toPrevMain) {
+                Text("Go to previous backstack main screen")
             }
         }
     }

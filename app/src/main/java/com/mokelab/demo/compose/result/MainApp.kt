@@ -10,7 +10,8 @@ import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import com.mokelab.demo.compose.result.screen.form.FormScreen
 import com.mokelab.demo.compose.result.screen.home.HomeScreen
-import com.mokelab.demo.compose.result.screen.scoped.ResultViewModel
+import com.mokelab.demo.compose.result.screen.prev.PrevHomeScreen
+import com.mokelab.demo.compose.result.screen.ResultViewModel
 import com.mokelab.demo.compose.result.screen.scoped.ScopedMainScreen
 
 @Composable
@@ -30,6 +31,9 @@ fun MainApp() {
                 },
                 toScopedMain = {
                     navController.navigate("/scoped")
+                },
+                toPrevMain = {
+                    navController.navigate("/prev")
                 }
             )
         }
@@ -74,6 +78,30 @@ fun MainApp() {
                     navController.popBackStack()
                 })
             }
+        } // end of navigation
+
+        composable("/prev") {
+            val resultVM: ResultViewModel = viewModel()
+            PrevHomeScreen(
+                result = resultVM.result.value,
+                back = {
+                    navController.popBackStack()
+                },
+                toForm = {
+                    navController.navigate("/prev/form")
+                },
+            )
+        }
+        composable("/prev/form") {
+            val parentEntry = navController.previousBackStackEntry
+            val resultVM: ResultViewModel? =
+                if (parentEntry == null) null else viewModel(parentEntry)
+            FormScreen(back = {
+                navController.popBackStack()
+            }, backWithResult = { result ->
+                resultVM?.setResult(result)
+                navController.popBackStack()
+            })
         }
     }
 }

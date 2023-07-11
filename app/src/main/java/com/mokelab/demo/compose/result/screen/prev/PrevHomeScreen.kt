@@ -1,4 +1,4 @@
-package com.mokelab.demo.compose.result.screen.scoped
+package com.mokelab.demo.compose.result.screen.prev
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -13,18 +13,17 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.mokelab.demo.compose.result.screen.ResultViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScopedMainScreen(
-    resultVM: ResultViewModel,
+fun PrevHomeScreen(
+    result: String,
     back: () -> Unit,
     toForm: () -> Unit,
 ) {
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("Scoped") },
+            TopAppBar(title = { Text("Prev backstack") },
                 navigationIcon = {
                     IconButton(onClick = back) {
                         Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back")
@@ -35,7 +34,7 @@ fun ScopedMainScreen(
         Column(
             modifier = Modifier.padding(paddingValues),
         ) {
-            Text(resultVM.result.value)
+            Text("Result=$result")
             Button(onClick = toForm) {
                 Text("Go to form")
             }
